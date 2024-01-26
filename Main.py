@@ -1,5 +1,5 @@
 def read_phonebook(filename="phonebook.txt"):
-    """Эта функция телефонный справочник из файла."""
+    """Эта функция считывает телефонный справочник из файла."""
     with open(filename, "a+"):
         pass
 
@@ -14,7 +14,7 @@ def read_phonebook(filename="phonebook.txt"):
 
 
 def write_phonebook(phonebook, filename="phonebook.txt"):
-    """а эта Записывает телефонный справочник в файл."""
+    """А эта Записывает телефонный справочник в файл."""
     with open(filename, "w") as file:
         for surname, (name, phone) in phonebook.items():
             file.write(f"{surname};{name};{phone}\n")
@@ -44,34 +44,3 @@ def delete_entry(surname):
 def find_entry(surname):
     phonebook = read_phonebook()
     return phonebook.get(surname, None)
-
-
-def main():
-    while True:
-        choice = input("Выберите необходимое действие (add/update/delete/find/quit): ").lower()
-        if choice == "quit":
-            break
-        elif choice == "add":
-            surname = input("Введите фамилию: ")
-            name = input("Введите имя: ")
-            phone = input("Введите номер телефона: ")
-            add_entry(surname, name, phone)
-        elif choice == "update":
-            surname = input("Введите фамилию: ")
-            name = input("Введите новое имя (оставьте пустым, чтобы не менять): ")
-            phone = input("Введите новый номер телефона (оставьте пустым, чтобы не менять): ")
-            update_entry(surname, name, phone)
-        elif choice == "delete":
-            surname = input("Введите фамилию для удаления: ")
-            delete_entry(surname)
-        elif choice == "find":
-            surname = input("Введите фамилию для поиска из тел.книги: ")
-            entry = find_entry(surname)
-            if entry:
-                print(f"Имя: {entry[0]}, Номер телефона: {entry[1]}")
-            else:
-                print("Запись не найдена.")
-        else:
-            print("Ошибка.Неизвестное действие.")
-
-
